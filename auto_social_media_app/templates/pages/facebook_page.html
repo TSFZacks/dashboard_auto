@@ -1,0 +1,54 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMMENT FILTER</title>
+
+    <script src="{% static 'scripts.js' %}?v=1"></script>
+
+</head>
+<body>
+    <div id="NextPage">
+
+        <img class="pato3" src="{% static 'XOsX.gif' %}" alt="Meu GIF">
+        <h1 class="titlePage">COMMENT FILTER</h1>
+
+        <div id="Box">
+            <div id="Box-content">
+                <h1 class="titleBox">Write here what you want</h1>
+                <input class="input1" type="text" name="pesquisa" placeholder="Write here">
+            </div>
+
+            <div id="KeyWords"></div>
+        </div>
+
+        <div id="Comments">
+            <!-- <div class="comment">
+                <h6 class="nomeUsuario">Person Name</h6>
+                <h3 class="TextComment">This is the comment, just testing, thank you</h3>
+                <p class="answer">reply</p>
+            </div> -->
+        </div>
+
+        <div class="BACKBUTTON"><h1 onclick="back()">BACK</h1></div>
+    </div>
+
+    <div id="relogio">
+        <div>
+            <span id="horas">00</span>
+            <span class="tempo">Horas</span>
+        </div>
+        <div>
+            <span id="minutos">00</span>
+            <span class="tempo">Minutos</span>
+        </div>
+        <div>
+            <span id="segundos">00</span>
+            <span class="tempo">Segundos</span>
+        </div>
+    </div>
+</body>
+</html>
