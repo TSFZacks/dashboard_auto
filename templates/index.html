@@ -919,21 +919,32 @@ img:hover{
 
         function adicionarComentarios(){
 
-            let comments = document.getElementsByClassName("comment");
+            const socket = io.connect('http://localhost:5000');  // Certifique-se de ajustar a URL conforme necessário
 
-       
+            // Ouvinte de eventos para o evento 'dados_atualizados'
+            socket.on('dados_atualizados', function(data) {
+                // 'data' contém os novos dados recebidos do servidor
+                console.log('Dados atualizados:', data);
 
-            for(let eai of comments){
+                // Atualize a interface do usuário com os novos dados
+                // Vamos assumir que 'data.dados' é uma array de comentários
+                // Se a estrutura real dos dados for diferente, ajuste conforme necessário
 
-                eai.innerHTML += "<h6 class='nomeUsuario'>Usuario</h6>";
+                let commentsContainer = document.getElementById('Comments');
 
-                eai.innerHTML += '<h3 class="TextComment">This is the comment, just testing, thank you</h3>'
+                // Limpa os comentários existentes
+                commentsContainer.innerHTML = '';
 
-                eai.innerHTML += '<p class="answer" onclick="replyFuncao()">reply</p>'
-
-                // console.log(eai);
-
-            }
+                // Adiciona os novos comentários à lista
+                for (let i = 0; i < data.dados.length; i++) {
+                    let newComment = document.createElement('div');
+                    newComment.className = 'comment faceComment commentIndex' + i;
+                    newComment.innerHTML = "<h6 class='nomeUsuario'>Usuario</h6>" +
+                                            '<h3 class="TextComment">' + data.dados[i] + '</h3>' +
+                                            '<p class="answer" onclick="replyFuncao()">reply</p>';
+                    commentsContainer.appendChild(newComment);
+                }
+            });
 
                
 
@@ -1499,60 +1510,7 @@ img:hover{
 
        
 
-        function lerArquivo() {
-
-            const nomeDoArquivo = 'dados.txt';
-
-       
-
-            // Cria um objeto XMLHttpRequest para carregar o arquivo
-
-            const xhr = new XMLHttpRequest();
-
-       
-
-            // Configura o que fazer quando a requisição for concluída
-
-            xhr.onload = function () {
-
-                if (xhr.status === 200) {
-
-                    const conteudoDoArquivo = xhr.responseText;
-
-                    console.log('Conteúdo do arquivo:', conteudoDoArquivo);
-
-                } else {
-
-                    console.error('Erro ao carregar o arquivo:', xhr.statusText);
-
-                }
-
-            };
-
-       
-
-            // Configura o que fazer em caso de erro na requisição
-
-            xhr.onerror = function () {
-
-                console.error('Erro ao carregar o arquivo.');
-
-            };
-
-       
-
-            // Abre a requisição GET para o arquivo 'dados.txt'
-
-            xhr.open('GET', nomeDoArquivo, true);
-
-       
-
-            // Envia a requisição
-
-            xhr.send();
-
-        }
-
+        
        
 
         // Adiciona um ouvinte de eventos para o botão
@@ -1565,32 +1523,7 @@ img:hover{
 
         });
 
-        const socket = io.connect('http://localhost:5000');  // Certifique-se de ajustar a URL conforme necessário
-
-        // Ouvinte de eventos para o evento 'dados_atualizados'
-        socket.on('dados_atualizados', function(data) {
-            // 'data' contém os novos dados recebidos do servidor
-            console.log('Dados atualizados:', data);
-
-            // Atualize a interface do usuário com os novos dados
-            // Vamos assumir que 'data.dados' é uma array de comentários
-            // Se a estrutura real dos dados for diferente, ajuste conforme necessário
-
-            let commentsContainer = document.getElementById('Comments');
-
-            // Limpa os comentários existentes
-            commentsContainer.innerHTML = '';
-
-            // Adiciona os novos comentários à lista
-            for (let i = 0; i < data.dados.length; i++) {
-                let newComment = document.createElement('div');
-                newComment.className = 'comment faceComment commentIndex' + i;
-                newComment.innerHTML = "<h6 class='nomeUsuario'>Usuario</h6>" +
-                                        '<h3 class="TextComment">' + data.dados[i] + '</h3>' +
-                                        '<p class="answer" onclick="replyFuncao()">reply</p>';
-                commentsContainer.appendChild(newComment);
-            }
-        });
+        
        
 
        
