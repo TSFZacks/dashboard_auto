@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Comment Filter</title>
+
+ 
+
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+
+ 
+
+    <style>
+
+        *{
+
+    margin: 0%;
+
+    padding: 0%;
+
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+ 
+
+body{
+
+    margin: auto;
+
+    max-width: 80%;
+
+    background-color: rgb(87, 104, 201);
+
+    padding-bottom: 50px;
+
+}
+
+ 
+
+.titlePage{
+
+    font-size: 63px;
+
+ 
+
+    text-align: center;
+
+    margin-top: 10%;
+
+ 
+
+    color: rgb(115, 211, 255)
+
+   
+
+}
+
+ 
+
+#Box{
+
+    background-color: rgb(115, 211, 255);
+
+    border-radius: 10px;
+
+    padding: 5px;
+
+    margin-top: 60px;
+
+   
+
+ 
+
+    text-align: center;
+
+}
+
+ 
+
+.titleBox{
+
+    font-size: 42px;
+
+    color: rgba(0, 0, 0, 0.685);
+
+    margin-bottom: 15px;
+
+}
+
+ 
+
+.input1{
+
+    width: 60%;
+
+    border-radius: 5px;
+
+    height: 35px;
+
+    padding-left: 5px;
+
+    font-size: 23px;
+
+}
+
+ 
+
+#KeyWords{
+
+    margin-top: 20px;
+
+    margin-left: 20px;
+
+    display: grid;
+
+    grid-template: auto / auto auto auto auto;
+
+    box-sizing: border-box;
+
+ 
+
+    max-height: 500px;
+
+    overflow-y: scroll;
+
+ 
+
+    font-size: 18px;
+
+ 
+
+}
+
+ 
+
+.wordKey{
+
+    font-size: 1.0em;
+
+    margin: 4px;
+
+    background-color: rgba(240, 248, 255, 0.842);
+
+    padding: 4px;
+
+    align-items: center;
+
+    border-radius: 8px;
+
+}
+
+ 
+
+.wordKey:hover{
+
+    color: rgba(8, 0, 0, 0.596);
+
+    cursor: pointer;
+
+    padding: 6px;
+
+    transition: padding 0.2s;
+
+}
+
+ 
+
+#Comments{
+
+    margin-top: 30px;
+
+    background-color: white;
+
+    max-height: 400px;
+
+    padding: 20px;
+
+    overflow-y: scroll;
+
+    border-radius: 10px;
+
+    opacity: 0;
+
+ 
+
+}
+
+ 
+
+.comment{
+
+    background-color: rgb(231, 236, 238);
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    font-size: 22px;
+
+    text-align: center;
+
+    margin-bottom: 15px;
+
+ 
+
+}
+
+ 
+
+.comment p {
+
+    font-size: 15px;
+
+    margin-top: 10px;
+
+    text-decoration: underline;
+
+    color:blue;
+
+    opacity: 0;
+
+    margin-top: -5px;
+
+}
+
+ 
+
+.comment:hover p {
+
+    opacity: 1;
+
+    margin-top: 15px;
+
+ 
+
+    transition: margin-top 1s, opacity 1s;
+
+}
+
+ 
+
+.comment:hover {
+
+    padding: 20px;
+
+    transition: padding 0.5s;
+
+}
+
+ 
+
+.comment .nomeUsuario{
+
+    margin-bottom: 5px;
+
+    text-decoration: underline;
+
+    font-size: 12px;
+
+}
+
+ 
+
+.comment:hover .nomeUsuario{
+
+    margin-bottom: 5px;
+
+    text-decoration: underline;
+
+    font-size: 18px;
+
+ 
+
+    transition: font-size 1s;
+
+}
+
+ 
+
+#NextPage{
+
+    display: none;
+
+}
+
+ 
+
+#startPage{
+
+    text-align: center;
+
+    display: flex;
+
+    flex-direction: column;
+
+    margin-top: 20%;
+
+ 
+
+}
+
+ 
+
+.plataforms{
+
+    display: flex;
+
+    flex-direction: row;
+
+    justify-content: center;
+
+    margin-top: 30px;
+
+    box-sizing: border-box;
+
+ 
+
+    font-size: 22px;
+
+}
+
+ 
+
+.plataform{
+
+    margin: 20px;
+
+    width: 120px;
+
+ 
+
+    cursor: pointer;
+
+}
+
+ 
+
+.BACKBUTTON{
+
+    background-color: aqua;
+
+    width: 120px;
+
+    font-size: 28px;
+
+    position: absolute;
+
+    bottom: 15px;
+
+    text-align: center;
+
+    padding: auto;
+
+    box-sizing: border-box;
+
+    border-radius: 8px;
+
+    top: 1%;
+
+    left: 5px;
+
+    height: max-content;
+
+ 
+
+    text-decoration: none;
+
+    color: black;
+
+}
+
+ 
+
+.BACKBUTTON:hover{
+
+    color: rgba(0, 0, 0, 0.671);
+
+    font-size: 31px;
+
+    box-shadow: 1px 3px 4px 1px rgba(0, 0, 0, 0.397);
+
+    transition: font-size  0.5s, color 0.6s, box-shadow 0.5s;
+
+}
+
+ 
+
+.SelectPlataform{
+
+    font-size: 52px;
+
+}
+
+ 
+
+img{
+
+    width: 80px;
+
+    cursor: pointer;
+
+}
+
+ 
+
+img:hover{
+
+    width: 100px;
+
+    transition: width 0.5s, height 0.5s;
+
+}
+
+ 
+
+@keyframes moveDiagonal {
+
+    0% {
+
+      top: 350px;
+
+      left: 0;
+
+    }
+
+    100% {
+
+      top: 100vh; /* Move a imagem 100% da altura da viewport para baixo */
+
+      left: 30vw; /* Move a imagem 100% da largura da viewport para a direita */
+
+    }
+
+}
+
+@keyframes moveDiagonal2 {
+
+    0% {
+
+      top: 20px;
+
+      right: 0;
+
+    }
+
+    100% {
+
+      top: 100vh; /* Move a imagem 100% da altura da viewport para baixo */
+
+      right: 100vw; /* Move a imagem 100% da largura da viewport para a direita */
+
+    }
+
+}
+
+ 
+
+.pato {
+
+    position: absolute;
+
+ 
+
+    /* animation: moveDiagonal 10s linear infinite; */
+
+}
+
+ 
+
+.pato2 {
+
+    position: absolute;
+
+    /* transform:scale(-1); */
+
+    transform:scaleX(-1);
+
+    animation: moveDiagonal2 10s linear infinite;
+
+}
+
+.pato3 {
+
+    position: absolute;
+
+}
+
+ 
+
+#relogio{
+
+    position: absolute;
+
+    display: flex;
+
+    right: 5px;
+
+    top: 5px;
+
+    background: transparent;
+
+    /* background-color: aqua; */
+
+    justify-content: space-around;
+
+    align-items: center;
+
+    width: 400px;
+
+    height: 50px;
+
+    box-shadow: 0px 8px 10px rgba(0, 0, 0, .5);
+
+}
+
+ 
+
+#relogio div{
+
+    height: 50px;
+
+    width: 50px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 18px;
+
+}
+
+ 
+
+#replyBox{
+
+    width: 500px;
+
+    height: 180px;
+
+    background-color: aliceblue;
+
+ 
+
+    position: absolute;
+
+    top: 45%;
+
+    left: 35%;
+
+    opacity: 0;
+
+ 
+
+    border-radius: 15px;
+
+    border: 2px solid black;
+
+    overflow: hidden;
+
+}
+
+ 
+
+.cancel{
+
+    font-size: 22px;
+
+    width: fit-content;
+
+    padding: 5px;
+
+    border-radius: 10px;
+
+}
+
+ 
+
+.cancel:hover{
+
+    font-size: 22.8px;
+
+    padding: 6px;
+
+    box-shadow: 0px 0px 6px 5px black;
+
+    cursor: pointer;
+
+ 
+
+    transition: font-size 0.3s, box-shadow 0.5s, padding 0.3s;
+
+}
+
+ 
+
+.help_input2{
+
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: 5%;
+
+}
+
+ 
+
+.input2{
+
+    width: 90%;
+
+    height: 50px;
+
+}
+
+ 
+
+.sendReply{
+
+    position: absolute;
+
+    right: 3%;
+
+    bottom: 5%;
+
+    color: rgba(0, 0, 0, 0.637);
+
+}
+
+ 
+
+.send{
+
+    cursor: pointer;
+
+}
+
+ 
+
+    </style>
+
+ 
+
+</head>
+
+<body>
+
+   
+
+    <div id="startPage">
+
+ 
+
+        <h1 class="SelectPlataform">Select the plataform</h1>
+
+        <img class="pato" src="./XOsX.gif" alt="Meu GIF">
+
+        <!-- <img class="pato2" src="./XOsX.gif" alt="Meu GIF"> -->
+
+        <div class="plataforms">
+
+ 
+
+            <div id="idPraPegarArq" class="facebook plataform" name="face" onclick="facebook()">
+
+                <img class="face" src="./faceIcon.png" alt="faceImage">
+
+                <h4 class="plataformName">Facebook</h4>
+
+            </div>
+
+ 
+
+            <div id="idPraPegarArq" class="instagram plataform" name="insta" onclick="instagram()">
+
+                <img class="insta" src="./instaIcon.png" alt="instaImage">
+
+                <h4 class="plataformName">Instagram</h4>
+
+            </div>
+
+ 
+
+            <div id="idPraPegarArq" class="twitter plataform" name="twitter" onclick="twitter()">
+
+                <img class="twitter" src="./twitterIcon.png" alt="twitterImage">
+
+                <h4 class="plataformName">Twitter</h4>
+
+            </div>
+
+ 
+
+            <div id="idPraPegarArq" class="youtube plataform" name="youtube" onclick="youtube()">
+
+                <img class="youtube" src="./youtubeIcon.png" alt="youtubeImage">
+
+               
+
+                <h4 class="plataformName">Youtube</h4>
+
+            </div>
+
+ 
+
+        </div>
+
+    </div>
+
+ 
+
+    <div id="NextPage">
+
+        <img class="pato3" src="./XOsX.gif" alt="Meu GIF">
+
+        <h1 class="titlePage">COMMENT FILTER</h1>
+
+ 
+
+        <div id="Box">
+
+            <!-- aqui sera armazenado o nome da pagina que foi aberta -->
+
+            <h3 style="display: none;" id="PaginaEntrada"></h3>
+
+ 
+
+            <div id="Box-content">
+
+                <h1 class="titleBox">Write here what you want</h1>
+
+                <input class="input1" type="text" name="pesquisa" placeholder="Write here">
+
+            </div>
+
+ 
+
+            <div id="KeyWords"></div>
+
+ 
+
+        </div>
+
+ 
+
+        <div id="Comments">
+
+          <!-- <div class="comment">
+
+                <h6 class="nomeUsuario">Person Name</h6>
+
+                <h3 class="TextComment">This is the comment, just testing, thank you</h3>
+
+                <p class="answer" style="font-size: 8px;">reply</p>
+
+            </div> -->
+
+        </div>
+
+ 
+
+    </div>
+
+    <a class="BACKBUTTON" href="">BACK</a>
+
+   
+
+    <div id="relogio">
+
+        <div>
+
+            <span id="horas">00</span>
+
+            <span class="tempo">Horas</span>
+
+        </div>
+
+        <div>
+
+            <span id="minutos">00</span>
+
+            <span class="tempo">Minutos</span>
+
+        </div>
+
+        <div>
+
+            <span id="segundos">00</span>
+
+            <span class="tempo">Segundos</span>
+
+        </div>
+
+ 
+
+    </div>
+
+    <div id="replyBox">
+
+        <div class="replyBoxClass">
+
+            <div class="cancel">
+
+                <p onclick="sairReplyBox()">cancel</p>
+
+            </div>
+
+            <div class="help_input2">
+
+                <input class="input2" type="text" name="replyMessage" placeholder="type here">
+
+            </div>
+
+            <div class="sendReply">
+
+                <p class="send">Enter to send</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- <script src="./script.js"></script>-->
+
+
+
+
+    <script>
+
+        let array = ['Lying client', 'scam alert', 'fake reviews', 'bad customers', 'fraudulent customer', 'report','share experience with clients', 'report bad employee', 'bad employee', 'avoid chargebacks', 'avoid scams', 'fake refund', 'business protection', 'web directory']
+
+       
+
+        function printKeyWords(array){
+
+            let keyWords = document.getElementById("KeyWords");
+
+            for(let i of array)
+
+                keyWords.innerHTML += "<h6 class='wordKey' onclick='filtrarPalavra(this)'>" + i + "</h6>";
+
+               
+
+        }
+
+        printKeyWords(array);
+
+       
+
+        function filtrarPalavra(e){
+
+            let word = e.innerText;
+
+            console.log("palavra passe (" +word+") foi clicado");
+
+            return word;
+
+        }
+
+       
+
+        function obterTextoDigitado() {
+
+            var meuInput = document.querySelector('.input1');
+
+            var textoDigitado = meuInput.value;
+
+       
+
+            let keyWords = document.getElementById("KeyWords");
+
+            if (!array.includes(textoDigitado) && textoDigitado != '')
+
+                keyWords.innerHTML += "<h6 class='wordKey' onclick='filtrarPalavra(this)'>" + textoDigitado + "</h6>";
+
+           
+
+            if (!array.includes(textoDigitado))
+
+                array.push(textoDigitado);
+
+            return textoDigitado;
+
+        }
+
+       
+
+       
+
+        document.addEventListener('keydown', function(event) {
+
+         
+
+            if (event.key === 'Enter') {
+
+                var textoDigitado = obterTextoDigitado();
+
+                console.log(textoDigitado);
+
+            }
+
+        });
+
+       
+
+       
+
+        function adicionarComentarios(){
+
+            let comments = document.getElementsByClassName("comment");
+
+       
+
+            for(let eai of comments){
+
+                eai.innerHTML += "<h6 class='nomeUsuario'>Usuario</h6>";
+
+                eai.innerHTML += '<h3 class="TextComment">This is the comment, just testing, thank you</h3>'
+
+                eai.innerHTML += '<p class="answer" onclick="replyFuncao()">reply</p>'
+
+                // console.log(eai);
+
+            }
+
+               
+
+           
+
+        }
+
+       
+
+        function slideDown() {
+
+       
+
+            var elemento = document.getElementById("Comments");
+
+            var alturaAtual = 0;
+
+            var alturaFinal = 400; // Altura final desejada
+
+       
+
+            // Exibe o elemento (se estiver oculto)
+
+            elemento.style.display = 'block';
+
+       
+
+            function animar() {
+
+              alturaAtual += 5; // Ajuste a velocidade do slide ajustando esse valor
+
+       
+
+              // Se atingir a altura final, interrompe a animação
+
+              if (alturaAtual >= alturaFinal) {
+
+                elemento.style.height = alturaFinal + 'px';
+
+                cancelAnimationFrame(animar);
+
+              } else {
+
+                // Atualiza a altura do elemento e continua a animação
+
+                elemento.style.height = alturaAtual + 'px';
+
+                requestAnimationFrame(animar);
+
+              }
+
+            }
+
+       
+
+            // Inicia a animação
+
+            requestAnimationFrame(animar);
+
+          }
+
+       
+
+        function facebook(){
+
+            let startPage = document.getElementById("startPage");
+
+            let nextPage = document.getElementById("NextPage");
+
+       
+
+            let paginaEntrada = document.getElementById('PaginaEntrada');
+
+            paginaEntrada.innerText =  'facebook';
+
+            console.log(paginaEntrada.textContent);
+
+       
+
+       
+
+            startPage.style.display = "none";
+
+            nextPage.style.display = "block"
+
+           
+
+       
+
+            let comments = document.getElementById("Comments");
+
+       
+
+            let htmlnovo = ''
+
+       
+
+            for(let i = 0; i < 10; i++)
+
+                htmlnovo += "<div class='comment faceComment commentIndex${"+i+"}'> </div>"
+
+           
+
+            comments.innerHTML = htmlnovo;
+
+           
+
+            adicionarComentarios();
+
+       
+
+            fadeIn(comments, 1000);
+
+            slideDown(comments, 1500);
+
+        }
+
+       
+
+       
+
+        function instagram(){
+
+            let startPage = document.getElementById("startPage");
+
+            let nextPage = document.getElementById("NextPage");
+
+       
+
+            let paginaEntrada = document.getElementById('PaginaEntrada');
+
+            paginaEntrada.innerText =  'instagram';
+
+            console.log(paginaEntrada.textContent);
+
+       
+
+            startPage.style.display = "none";
+
+            nextPage.style.display = "block"
+
+           
+
+       
+
+            let comments = document.getElementById("Comments");
+
+       
+
+            let htmlnovo = ''
+
+       
+
+            for(let i = 0; i < 10; i++)
+
+                htmlnovo += "<div class='comment faceComment commentIndex${"+i+"}'> </div>"
+
+           
+
+            comments.innerHTML = htmlnovo;
+
+           
+
+            adicionarComentarios();
+
+       
+
+            fadeIn(comments, 1000);
+
+            slideDown(comments, 1500);
+
+           
+
+        }
+
+       
+
+        function twitter(){
+
+            let startPage = document.getElementById("startPage");
+
+            let nextPage = document.getElementById("NextPage");
+
+       
+
+            let paginaEntrada = document.getElementById('PaginaEntrada');
+
+            paginaEntrada.innerText =  'twitter';
+
+       
+
+            console.log(paginaEntrada.textContent);
+
+       
+
+       
+
+            startPage.style.display = "none";
+
+            nextPage.style.display = "block"
+
+           
+
+       
+
+            let comments = document.getElementById("Comments");
+
+       
+
+            let htmlnovo = ''
+
+       
+
+            for(let i = 0; i < 10; i++)
+
+                htmlnovo += "<div class='comment faceComment commentIndex${"+i+"}'> </div>"
+
+           
+
+            comments.innerHTML = htmlnovo;
+
+           
+
+            adicionarComentarios();
+
+       
+
+            fadeIn(comments, 1000);
+
+            slideDown(comments, 1500);
+
+           
+
+        }
+
+       
+
+        function youtube(){
+
+            let startPage = document.getElementById("startPage");
+
+            let nextPage = document.getElementById("NextPage");
+
+       
+
+            let paginaEntrada = document.getElementById('PaginaEntrada');
+
+            paginaEntrada.innerText =  'youtube';
+
+       
+
+            console.log(paginaEntrada.textContent);
+
+       
+
+            startPage.style.display = "none";
+
+            nextPage.style.display = "block"
+
+           
+
+       
+
+            let comments = document.getElementById("Comments");
+
+       
+
+            let htmlnovo = ''
+
+       
+
+            for(let i = 0; i < 10; i++)
+
+                htmlnovo += "<div class='comment faceComment commentIndex${"+i+"}'> </div>"
+
+           
+
+            comments.innerHTML = htmlnovo;
+
+           
+
+            adicionarComentarios();
+
+       
+
+            fadeIn(comments, 1000);
+
+            slideDown(comments, 1500);
+
+           
+
+        }
+
+       
+
+        function back(){
+
+            let startPage = document.getElementById("startPage");
+
+            let nextPage = document.getElementById("NextPage");
+
+       
+
+            startPage.style.display = "block";
+
+            nextPage.style.display = "none"
+
+        }
+
+       
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // Espera o DOM estar completamente carregado
+
+       
+
+            // Obtém o elemento pelo ID
+
+            var comments = document.getElementById('Comments');
+
+       
+
+            // Inicia a animação fadeIn
+
+            fadeIn(comments, 1000); // 1000 ms (1 segundo) de duração
+
+        });
+
+       
+
+        function fadeIn(elemento, duration) {
+
+            var startTime = performance.now();
+
+       
+
+            function updateOpacity() {
+
+                var currentTime = performance.now();
+
+                var progress = (currentTime - startTime) / duration;
+
+       
+
+                if (progress < 1) {
+
+                    var opacityValue = Math.min(progress, 1);
+
+                    elemento.style.opacity = opacityValue;
+
+                } else {
+
+                    clearInterval(animationInterval);
+
+                    elemento.style.opacity = 1; // Garante que a opacidade seja 1 no final
+
+                }
+
+            }
+
+       
+
+            var animationInterval = setInterval(updateOpacity, 16); // Atualiza a cada 16 ms (aproximadamente 60 FPS)
+
+        }
+
+       
+
+       
+
+        //relógio
+
+        const horas = document.getElementById('horas');
+
+        const minutos = document.getElementById('minutos');
+
+        const segundos = document.getElementById('segundos');
+
+       
+
+        const relogio = setInterval(function() {
+
+            let dateToday = new Date();
+
+       
+
+            let hr = dateToday.getHours();
+
+            let min = dateToday.getMinutes();
+
+            let s = dateToday.getSeconds();
+
+       
+
+            if(hr < 10) hr = '0' + hr;
+
+            if(min < 10) min = '0' + min;
+
+            if(s < 10) s = '0' + s;
+
+       
+
+            horas.textContent = hr;
+
+            minutos.textContent = min;
+
+            segundos.textContent = s;
+
+       
+
+        })
+
+       
+
+        //para aparecer o reply
+
+        let comment = document.getElementsByClassName('comment');
+
+       
+
+        function adicionarEvento(comment) {
+
+            for(let objeto of comment){
+
+                objeto.addEventListener('mouseover', function() {
+
+                // Configurar um temporizador para esperar 0.5 segundos
+
+                setTimeout(function() {
+
+                    // Exibir mensagem no console após 0.5 segundos
+
+                    console.log("0.5");
+
+                }, 500);
+
+                });
+
+            }
+
+        }
+
+       
+
+        adicionarEvento(comment);
+
+       
+
+        function replyFuncao(e){
+
+            let box = document.getElementById('replyBox');
+
+            let page = document.getElementById('NextPage');
+
+            let button = document.getElementsByClassName('BACKBUTTON');
+
+       
+
+            page.style.filter = 'blur(5px)';
+
+       
+
+            page.style.transition = "filter 0.5s";
+
+            box.style.display = "block";
+
+            box.style.opacity = 0;
+
+            box.style.transition = "opacity 0.5s";
+
+       
+
+            setTimeout(function() {
+
+                box.style.opacity = 1;
+
+            }, 100); // 2000 milissegundos = 2 segundos
+
+        }
+
+       
+
+        function sairReplyBox(){
+
+       
+
+            let box = document.getElementById('replyBox');
+
+       
+
+            let page = document.getElementById('NextPage');
+
+            let button = document.getElementsByClassName('BACKBUTTON');
+
+       
+
+       
+
+            page.style.filter = 'blur(0)';
+
+            box.style.opacity = 1;
+
+            box.style.transition = "opacity 0.5s";
+
+       
+
+            setTimeout(function() {
+
+                box.style.opacity = 0;
+
+            }, 50);
+
+       
+
+             setTimeout(function() {
+
+                box.style.display = "none";
+
+            }, 10);
+
+       
+
+        }
+
+       
+
+        function obterTextoDigitado2() {
+
+            var meuInput = document.querySelector('.input2');
+
+       
+
+           
+
+       
+
+            var textoDigitado = meuInput.value;
+
+            meuInput.value = ' ';
+
+            console.log(textoDigitado);
+
+            return textoDigitado;
+
+        }
+
+       
+
+        document.addEventListener('keydown', function(event) {
+
+            if (event.key === 'Enter') {
+
+                sairReplyBox();
+
+                var textoDigitado = obterTextoDigitado2();
+
+                console.log(textoDigitado);
+
+            }
+
+        });
+
+       
+
+        function lerArquivo() {
+
+            const nomeDoArquivo = 'dados.txt';
+
+       
+
+            // Cria um objeto XMLHttpRequest para carregar o arquivo
+
+            const xhr = new XMLHttpRequest();
+
+       
+
+            // Configura o que fazer quando a requisição for concluída
+
+            xhr.onload = function () {
+
+                if (xhr.status === 200) {
+
+                    const conteudoDoArquivo = xhr.responseText;
+
+                    console.log('Conteúdo do arquivo:', conteudoDoArquivo);
+
+                } else {
+
+                    console.error('Erro ao carregar o arquivo:', xhr.statusText);
+
+                }
+
+            };
+
+       
+
+            // Configura o que fazer em caso de erro na requisição
+
+            xhr.onerror = function () {
+
+                console.error('Erro ao carregar o arquivo.');
+
+            };
+
+       
+
+            // Abre a requisição GET para o arquivo 'dados.txt'
+
+            xhr.open('GET', nomeDoArquivo, true);
+
+       
+
+            // Envia a requisição
+
+            xhr.send();
+
+        }
+
+       
+
+        // Adiciona um ouvinte de eventos para o botão
+
+        document.getElementById('idPraPegarArq').addEventListener('click', function () {
+
+            // Chama a função para ler o arquivo ao clicar no botão
+
+            lerArquivo();
+
+        });
+
+        const socket = io.connect('http://localhost:5000');  // Certifique-se de ajustar a URL conforme necessário
+
+        // Ouvinte de eventos para o evento 'dados_atualizados'
+        socket.on('dados_atualizados', function(data) {
+            // 'data' contém os novos dados recebidos do servidor
+            console.log('Dados atualizados:', data);
+
+            // Atualize a interface do usuário com os novos dados
+            // Vamos assumir que 'data.dados' é uma array de comentários
+            // Se a estrutura real dos dados for diferente, ajuste conforme necessário
+
+            let commentsContainer = document.getElementById('Comments');
+
+            // Limpa os comentários existentes
+            commentsContainer.innerHTML = '';
+
+            // Adiciona os novos comentários à lista
+            for (let i = 0; i < data.dados.length; i++) {
+                let newComment = document.createElement('div');
+                newComment.className = 'comment faceComment commentIndex' + i;
+                newComment.innerHTML = "<h6 class='nomeUsuario'>Usuario</h6>" +
+                                        '<h3 class="TextComment">' + data.dados[i] + '</h3>' +
+                                        '<p class="answer" onclick="replyFuncao()">reply</p>';
+                commentsContainer.appendChild(newComment);
+            }
+        });
+       
+
+       
+
+    </script>
+
+   
+
+</body>
+
+</html>
+
+ 
